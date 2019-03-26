@@ -8,6 +8,7 @@
 		<style type="text/css">
     body {
     		  background-color: black;
+		      color: white;
     		 }
     	tbody{
 			color: white;    	
@@ -29,6 +30,9 @@
 					<th>temperatura máxima</th>
 					<th>humidade relativa do ar </th>
 					<th> Decrição </th>
+					<th> Latitude </th>
+					<th> Logittyde </th>
+					<th> Data/hora </th>
 				</tr>
 			</thead>
 		<tbody>
@@ -39,6 +43,9 @@
 					<td th:text="${Previsaodotempo.temperaturaMax}">°</td>
 					<td th:text="${Previsaodotempo.humidadeDoAr}">°</td>
 					<td th:text="${Previsaodotempo.descricao}">°a</td>
+					<td th:text="${Previsaodotempo.latitude}">°a</td>
+					<td th:text="${Previsaodotempo.logitude}">°a</td>
+					<td th:text="${Previsaodotempo.datahr}">°a</td>
 				</tr>
 		</tbody>
 	</table>

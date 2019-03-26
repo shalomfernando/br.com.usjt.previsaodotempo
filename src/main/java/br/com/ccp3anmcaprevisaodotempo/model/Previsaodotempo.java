@@ -19,7 +19,10 @@ public class Previsaodotempo implements Serializable {
 	private double temperaturamax;
 	private double humidadedoar;
 	private String descricao;
-	
+	private long latitude;
+	private long logitude;
+	private String datahr;
+
 	public long getId() {
 		return id;
 	}
@@ -59,5 +62,64 @@ public class Previsaodotempo implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getNomediasemana() {
+		return nomediasemana;
+	}
+
+	public void setNomediasemana(String nomediasemana) {
+		this.nomediasemana = nomediasemana;
+	}
+
+	public double getTemperaturamin() {
+		return temperaturamin;
+	}
+
+	public void setTemperaturamin(double temperaturamin) {
+		this.temperaturamin = temperaturamin;
+	}
+
+	public double getTemperaturamax() {
+		return temperaturamax;
+	}
+
+	public void setTemperaturamax(double temperaturamax) {
+		this.temperaturamax = temperaturamax;
+	}
+
+	public double getHumidadedoar() {
+		return humidadedoar;
+	}
+
+	public void setHumidadedoar(double humidadedoar) {
+		this.humidadedoar = humidadedoar;
+	}
+
+	public long getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(long latitude) {
+		this.latitude = latitude;
+	}
+
+	public long getLogitude() {
+		return logitude;
+	}
+
+	public void setLogitude(long logitude) {
+		this.logitude = logitude;
+	}
+
+	public String getDatahr() {
+		return datahr;
+	}
+
+	public void setDatahr(String datahr) {
+		this.datahr = datahr;
+	}
 }
