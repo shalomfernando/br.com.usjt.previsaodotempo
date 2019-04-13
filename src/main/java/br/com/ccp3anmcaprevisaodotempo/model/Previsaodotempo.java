@@ -2,10 +2,7 @@ package br.com.ccp3anmcaprevisaodotempo.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Previsaodotempo implements Serializable {
@@ -14,7 +11,9 @@ public class Previsaodotempo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String nomediasemana;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(nullable = false,name = "ID_SEMANA",foreignKey = @ForeignKey(name="FK_SEMANA_PERIODO"))
+	private DiaSemana diaSemana;
 	private double temperaturamin;
 	private double temperaturamax;
 	private double humidadedoar;
@@ -23,17 +22,13 @@ public class Previsaodotempo implements Serializable {
 	private long logitude;
 	private String datahr;
 
+
+
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
-	public String getNomeDiaSemana() {
-		return nomediasemana;
-	}
-	public void setNomeDiaSemana(String nomeDiaSemana) {
-		this.nomediasemana = nomeDiaSemana;
 	}
 	public double getTemperaturaMin() {
 		return temperaturamin;
@@ -65,14 +60,6 @@ public class Previsaodotempo implements Serializable {
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
-	}
-
-	public String getNomediasemana() {
-		return nomediasemana;
-	}
-
-	public void setNomediasemana(String nomediasemana) {
-		this.nomediasemana = nomediasemana;
 	}
 
 	public double getTemperaturamin() {
@@ -121,5 +108,13 @@ public class Previsaodotempo implements Serializable {
 
 	public void setDatahr(String datahr) {
 		this.datahr = datahr;
+	}
+
+	public DiaSemana getDiaSemana() {
+		return diaSemana;
+	}
+
+	public void setDiaSemana(DiaSemana diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 }

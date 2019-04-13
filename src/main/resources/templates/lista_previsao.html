@@ -38,8 +38,7 @@
 		<tbody>
 				<tr th:each="Previsaodotempo : ${previsao}">
 				 <td th:text="${Previsaodotempo.id}"></td>
-					<td th:text="${Previsaodotempo.nomeDiaSemana}">°</td>
-					<td th:text="${Previsaodotempo.temperaturaMin}">°</td>
+					<td th:text="${Previsaodotempo.getDiaSemana().getDescricaoSemana()}">					<td th:text="${Previsaodotempo.temperaturaMin}">°</td>
 					<td th:text="${Previsaodotempo.temperaturaMax}">°</td>
 					<td th:text="${Previsaodotempo.humidadeDoAr}">°</td>
 					<td th:text="${Previsaodotempo.descricao}">°a</td>
