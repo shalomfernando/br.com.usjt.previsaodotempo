@@ -1,6 +1,7 @@
 package br.com.ccp3anmcaprevisaodotempo.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ public class Previsaodotempo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Column(name = "id_prev")
 	private long id;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(nullable = false,name = "ID_SEMANA",foreignKey = @ForeignKey(name="FK_SEMANA_PERIODO"))
@@ -18,10 +20,11 @@ public class Previsaodotempo implements Serializable {
 	private double temperaturamax;
 	private double humidadedoar;
 	private String descricao;
-	private long latitude;
-	private long logitude;
 	private String datahr;
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "id_Cidade" )
+	private Cidades cidades;
 
 
 	public long getId() {
@@ -84,22 +87,6 @@ public class Previsaodotempo implements Serializable {
 
 	public void setHumidadedoar(double humidadedoar) {
 		this.humidadedoar = humidadedoar;
-	}
-
-	public long getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(long latitude) {
-		this.latitude = latitude;
-	}
-
-	public long getLogitude() {
-		return logitude;
-	}
-
-	public void setLogitude(long logitude) {
-		this.logitude = logitude;
 	}
 
 	public String getDatahr() {
