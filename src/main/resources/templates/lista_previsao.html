@@ -1,56 +1,65 @@
-<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Hello Spring Boot</title>
-		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"rel="stylesheet" />
-		<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"rel="stylesheet" />
-		<style type="text/css">
-    body {
-    		  background-color: black;
-		      color: white;
-    		 }
-    	tbody{
-			color: white;    	
-    	}	 
-  </style>
-	</head>
-	<body class="">
-		<div class="panel panel-default" style="margin: 10px">
-		<div class="panel-heading">
-			<h1 class="panel-title">Preivisão do Tempo</h1>
-		</div>
-	</div>
-	< class="table">
-	<thead>
-				<tr>
-					<th> ID</th>
-					<th> Nome do dia na semana</th>
-					<th>temperatura mínima</th>
-					<th>temperatura máxima</th>
-					<th>humidade relativa do ar </th>
-					<th> Decrição </th>
-					<th> Data/hora </th>
-				</tr>
-			</thead>
-		<tbody>
-				<tr th:each="Previsaodotempo : ${previsao}">
-				 <td th:text="${Previsaodotempo.id}"></td>
-					<td th:text="${Previsaodotempo.getDiaSemana().getDescricaoSemana()}">					<td th:text="${Previsaodotempo.temperaturaMin}">°</td>
-					<td th:text="${Previsaodotempo.temperaturaMax}">°</td>
-					<td th:text="${Previsaodotempo.humidadeDoAr}">°</td>
-					<td th:text="${Previsaodotempo.descricao}">°a</td>
-					<td th:text="${Previsaodotempo.datahr}">°a</td>
-				</tr>
-		</tbody></br>
-		<tbody>
-		<tr th:each="Cidades : ${cidade}">
-			<td th:text="${Cidades.nome}"></td>
-			<td th:text="${Cidades.latitude}">°a</td>
-			<td th:text="${Cidades.longitude}">°a</td>
-		</tr>
-		</tbody>
-	</table>
-	
-	</body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Hello Spring Boot</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+    <style type="text/css">
+        /*body {*/
+            /*background-color: black;*/
+            /*color: white;*/
+        /*}*/
+
+        /*tbody {*/
+            /*color: white;*/
+        /*}*/
+    </style>
+</head>
+<body class="">
+<div class="panel panel-default" style="margin: 10px">
+    <form method="post" th:action="@{/buscar}">
+        <div class="panel-heading">
+            <h1 class="panel-title">Preivisão do Tempo</h1>
+            <input type="text" name="nome">
+            <button type="submit" name="buscar">P</button>
+        </div>
+    </form>
+    <form method="post" th:action="@{/buscarLocal}">
+        <input type="text" name="latitude">
+        <input type="text" name="longitude">
+        <button type="submit" name="buscarLocal">Buscar</button>
+    </form>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th> Nome do dia na semana</th>
+        <th>temperatura mínima</th>
+        <th>temperatura máxima</th>
+        <th>humidade relativa do ar</th>
+        <th> Decrição</th>
+        <th> Data/hora</th>
+        <th> Cidade</th>
+        <th> Latitude</th>
+        <th> Longitude</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="Previsaodotempo : ${previsao}">
+        <td th:text="${Previsaodotempo.getDiaSemana().getDescricaoSemana()}">
+        <td th:text="${Previsaodotempo.temperaturaMin}">°</td>
+        <td th:text="${Previsaodotempo.temperaturaMax}">°</td>
+        <td th:text="${Previsaodotempo.humidadeDoAr}">°</td>
+        <td th:text="${Previsaodotempo.descricao}">°a</td>
+        <td th:text="${Previsaodotempo.datahr}">°a</td>
+        <td th:text="${Previsaodotempo.getCidades().nome}">°a</td>
+        <td th:text="${Previsaodotempo.getCidades().getLatitude()}">°a</td>
+        <td th:text="${Previsaodotempo.getCidades().longitude}">°a</td>
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
 </html>

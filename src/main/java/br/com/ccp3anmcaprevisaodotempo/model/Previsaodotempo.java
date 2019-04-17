@@ -11,10 +11,9 @@ public class Previsaodotempo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name = "id_prev")
 	private long id;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(nullable = false,name = "ID_SEMANA",foreignKey = @ForeignKey(name="FK_SEMANA_PERIODO"))
+	@JoinColumn(nullable = false,name = "ID_SEMANA")
 	private DiaSemana diaSemana;
 	private double temperaturamin;
 	private double temperaturamax;
@@ -23,9 +22,16 @@ public class Previsaodotempo implements Serializable {
 	private String datahr;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn (name = "id_Cidade" )
+	@JoinColumn(nullable = false,name = "id_cidade",foreignKey = @ForeignKey(name="FK_SEMANA_PERIODO"))
 	private Cidades cidades;
 
+	public Cidades getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(Cidades cidades) {
+		this.cidades = cidades;
+	}
 
 	public long getId() {
 		return id;

@@ -5,11 +5,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "cidade")
+@Table(name = "tb_cidade")
 public class Cidades implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cidade")
     long id;
     @Column (name = "nome")
     String nome ;
@@ -18,9 +19,7 @@ public class Cidades implements Serializable {
     @Column(name = "longitude")
     int longitude;
 
-    @OneToMany (cascade = CascadeType.ALL,mappedBy = "cidades")
-    @JoinColumn(name = "id_Cidade")
-    private List<Previsaodotempo> previsaodotempos;
+
 
     public long getId() {
         return id;
@@ -54,11 +53,5 @@ public class Cidades implements Serializable {
         this.longitude = longitude;
     }
 
-    public List<Previsaodotempo> getPrevisaodotempos() {
-        return previsaodotempos;
-    }
 
-    public void setPrevisaodotempos(List<Previsaodotempo> previsaodotempos) {
-        this.previsaodotempos = previsaodotempos;
-    }
 }
