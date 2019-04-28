@@ -7,29 +7,55 @@
     <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
     <style type="text/css">
         /*body {*/
-            /*background-color: black;*/
-            /*color: white;*/
+        /*background-color: black;*/
+        /*color: white;*/
         /*}*/
 
         /*tbody {*/
-            /*color: white;*/
+        /*color: white;*/
         /*}*/
     </style>
 </head>
-<body class="">
-<div class="panel panel-default" style="margin: 10px">
-    <form method="post" th:action="@{/buscar}">
-        <div class="panel-heading">
-            <h1 class="panel-title">Preivisão do Tempo</h1>
-            <input type="text" name="nome">
-            <button type="submit" name="buscar">P</button>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1 class="panel-title">Preivisão do Tempo</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" th:action="@{/buscar}">
+                <div class="panel-heading">
+                    <input type="text" name="nome" placeholder="Cidade">
+                    <button type="submit" name="BuscarNomeFuture">Pesquisar</button>
+                </div>
+            </form>
+            <form method="post" th:action="@{/buscarLocal}">
+                <div class="panel-heading">
+                    <input type="text" name="latitude" placeholder="latitude">
+                    <input type="text" name="longitude" placeholder="longitude">
+                    <button type="submit" name="buscarLocalFutute">Buscar</button>
+                </div>
+            </form>
         </div>
-    </form>
-    <form method="post" th:action="@{/buscarLocal}">
-        <input type="text" name="latitude">
-        <input type="text" name="longitude">
-        <button type="submit" name="buscarLocal">Buscar</button>
-    </form>
+        <div class="col-md-4">
+            <form method="post" th:action="@{/BuscarPorQuery}">
+                <div class="panel-heading">
+                    <input type="text" name="nome" placeholder="BuscarPorQuery">
+                    <button type="submit" name="BuscarPorQuery">Pesquisar</button>
+                </div>
+            </form>
+            <FORM method="post" th:action="@{/buscarPorLocaQuery}">
+                <div class="panel-heading">
+                    <input type="text" name="latitude" placeholder="long">
+                    <input type="text" name="longitude" placeholder="lat">
+                    <button type="submit" name="buscarPorLocaQuery">Buscar</button>
+                </div>
+            </FORM>
+        </div>
+        <div class="col-md-4">
+           <button value="" type="submit" name="previsao"> Listar tudo</button>
+        </div>
+    </div>
 </div>
 <table class="table">
     <thead>
@@ -47,15 +73,15 @@
     </thead>
     <tbody>
     <tr th:each="Previsaodotempo : ${previsao}">
-        <td th:text="${Previsaodotempo.getDiaSemana().getDescricaoSemana()}">
+        <td th:text="${Previsaodotempo.DiaSemana.DescricaoSemana}">
         <td th:text="${Previsaodotempo.temperaturaMin}">°</td>
         <td th:text="${Previsaodotempo.temperaturaMax}">°</td>
         <td th:text="${Previsaodotempo.humidadeDoAr}">°</td>
         <td th:text="${Previsaodotempo.descricao}">°a</td>
         <td th:text="${Previsaodotempo.datahr}">°a</td>
-        <td th:text="${Previsaodotempo.getCidades().nome}">°a</td>
-        <td th:text="${Previsaodotempo.getCidades().getLatitude()}">°a</td>
-        <td th:text="${Previsaodotempo.getCidades().longitude}">°a</td>
+        <td th:text="${Previsaodotempo.Cidades.nome}">°a</td>
+        <td th:text="${Previsaodotempo.Cidades.latitude}">°a</td>
+        <td th:text="${Previsaodotempo.Cidades.longitude}">°a</td>
     </tr>
     </tbody>
 

@@ -1,25 +1,37 @@
 package br.com.ccp3anmcaprevisaodotempo.Service;
 
-import br.com.ccp3anmcaprevisaodotempo.model.Cidades;
 import br.com.ccp3anmcaprevisaodotempo.model.Previsaodotempo;
 import br.com.ccp3anmcaprevisaodotempo.repository.PrevisaodotempoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.concurrent.Future;
+
 @Service
 public class PrevisaoService {
 
+    private final PrevisaodotempoRepository repository;
     @Autowired
-    PrevisaodotempoRepository pr;
+    public PrevisaoService(PrevisaodotempoRepository repository){
+        this.repository = repository;
+    }
 
-    public Previsaodotempo BuscarNome(String nome) {
-        Previsaodotempo previsaodotempo = pr.findAllByCidades_Nome(nome);
+
+    public Future <List<Previsaodotempo>> BuscarNomeFutu(String nome) {
+        return repository.findAllByCidades_NomeIgnoreCase(nome);
+    }
+
+    public Future <Previsaodotempo> BuscarLocalFutu(int latitude, int longitude) {
+        Future <Previsaodotempo> previsaodotempo = repository.findAllByCidades_LatitudeAndAndCidades_Longitude(latitude, longitude);
         return previsaodotempo;
     }
 
-    public Previsaodotempo BuscarLocal(int latitude, int longitude) {
-        Previsaodotempo previsaodotempo = pr.findAllByCidades_LatitudeAndAndCidades_Longitude(latitude, longitude);
-        return previsaodotempo;
+    public List<Previsaodotempo> buscarNomeCidadeQuery(String nome){
+        return  repository.buscarCidadePorNome(nome);
+    }
+    public List<Previsaodotempo> buscarPorLocaQuery(int latitude, int longitude){
+        return repository.buscarPorLatitudeELongitude(longitude,latitude);
     }
 
 }

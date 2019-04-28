@@ -2,6 +2,8 @@ package br.com.ccp3anmcaprevisaodotempo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import br.com.ccp3anmcaprevisaodotempo.Service.PrevisaoService;
 import br.com.ccp3anmcaprevisaodotempo.model.Cidades;
@@ -22,9 +24,12 @@ public class PrevisaodotempoController {
 	private PrevisaodotempoRepository repoPre;
 
 	@Autowired
-	PrevisaoService pr;
+	PrevisaoService service;
+
 	@Autowired
 	private CidadeRepository cidadeRepository;
+
+    Future<Previsaodotempo> previsaodotempo ;
 
 	@GetMapping("/previsao")
 	public ModelAndView previsao() {
@@ -39,17 +44,33 @@ public class PrevisaodotempoController {
 
 
 	@PostMapping("/buscar")
-	public ModelAndView BuscarNome(String nome) {
+	public ModelAndView BuscarNomeFuture(String nome)throws InterruptedException, ExecutionException {
 		ModelAndView mv =  new ModelAndView("lista_previsao");
-		Previsaodotempo previsaodotempo = pr.BuscarNome(nome);
-		mv.addObject("previsao",previsaodotempo);
+		Future<List<Previsaodotempo>> previsao = service.BuscarNomeFutu(nome);
+		mv.addObject("previsao",previsao.get());
 		return mv;
 	}
+
 	@PostMapping("/buscarLocal")
-	public ModelAndView BuscarLocal(int latitude, int longitude) {
+	public ModelAndView buscarLocalFutute(int latitude, int longitude) throws InterruptedException, ExecutionException {
 		ModelAndView mv =  new ModelAndView("lista_previsao");
-		Previsaodotempo previsaodotempo = pr.BuscarLocal(latitude, longitude);
+		Future <Previsaodotempo> previsao = service.BuscarLocalFutu(latitude, longitude);
+		mv.addObject("previsao",previsao.get());
+		return mv;
+	}
+	@PostMapping("/BuscarPorQuery")
+	public ModelAndView buscarNomeCidadeQuery(String nome) {
+		ModelAndView mv = new ModelAndView("lista_previsao");
+		List <Previsaodotempo> previsaodotempo = service.buscarNomeCidadeQuery(nome);
 		mv.addObject("previsao",previsaodotempo);
+		return  mv;
+	}
+
+	@PostMapping("/buscarPorLocaQuery")
+	public ModelAndView buscarPorLocaQuery(int latitude,int longitude){
+		ModelAndView mv = new ModelAndView("lista_previsao");
+		List<Previsaodotempo> previsaodotempos = service.buscarPorLocaQuery(longitude,latitude);
+		mv.addObject("previsao",previsaodotempos);
 		return mv;
 	}
 	
