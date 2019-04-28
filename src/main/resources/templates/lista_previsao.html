@@ -53,7 +53,20 @@
             </FORM>
         </div>
         <div class="col-md-4">
-           <button value="" type="submit" name="previsao"> Listar tudo</button>
+            <form method="post" th:action="@{/Buscar3}">
+                <div class="panel-heading">
+                    <input name="nome" type="text" placeholder="Cidade">
+                    <button type="submit" name="Buscar3">Buscar</button>
+                </div>
+            </form>
+            <form method="post" th:action="@{BuscarLocal3}">
+                <div class="panel-heading">
+                    <input name="latitude" type="text">
+                    <input name="longitude" type="text">
+                    <button type="submit" name="/BuscarLocal3">Buscar</button>
+                    <div class="panel-heading">
+            </form>
+            <button value="" type="submit" name="previsao"> Listar tudo</button>
         </div>
     </div>
 </div>

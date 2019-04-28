@@ -6,6 +6,10 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@NamedQuery(name = "Previsaodotempo.buscarNome",
+		query = "SELECT P FROM Previsaodotempo P  join P.cidades c on c.id = P.cidades where upper(c.nome) = upper(:nome)")
+@NamedQuery(name = "Previsaodotempo.BuscarLocal3",
+		query ="SELECT a FROM Previsaodotempo a join a.cidades c on c.id = a.cidades where c.latitude = :latitude and c.longitude = :longitude" )
 public class Previsaodotempo implements Serializable {
 
 	private static final long serialVersionUID = 1L;

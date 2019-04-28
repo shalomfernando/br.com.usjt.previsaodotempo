@@ -34,4 +34,12 @@ public class PrevisaoService {
         return repository.buscarPorLatitudeELongitude(longitude,latitude);
     }
 
+    public Previsaodotempo BuscarNome(String nome){
+        return repository.buscarNome(nome);
+    }
+
+    public Previsaodotempo BuscarLocal3(int latitude,int longitude){
+        return repository.BuscarLocal3(latitude,longitude);
+    }
+
 }

@@ -73,5 +73,21 @@ public class PrevisaodotempoController {
 		mv.addObject("previsao",previsaodotempos);
 		return mv;
 	}
+
+	@PostMapping("/Buscar3")
+	public ModelAndView Buscar3(String nome){
+		ModelAndView mv = new ModelAndView("lista_previsao");
+		Previsaodotempo previsaodotempo = service.BuscarNome(nome);
+		mv.addObject("previsao",previsaodotempo);
+		return mv;
+	}
+
+	@PostMapping("/BuscarLocal3")
+	public ModelAndView BuscarLocal3(int longitude,int latitude){
+		ModelAndView mv = new ModelAndView("lista_previsao");
+		Previsaodotempo previsaodotempo = service.BuscarLocal3(latitude,longitude);
+		mv.addObject("previsao",previsaodotempo);
+		return mv;
+	}
 	
 }

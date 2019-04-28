@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.ccp3anmcaprevisaodotempo.model.Previsaodotempo;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,11 @@ public interface PrevisaodotempoRepository extends JpaRepository<Previsaodotempo
 
     @Query ("SELECT p from Previsaodotempo p JOIN p.cidades c on c.id = p.cidades where :latitude = c.latitude and :longitude = c.longitude")
     public List<Previsaodotempo> buscarPorLatitudeELongitude(int longitude, int latitude);
+
+
+    public Previsaodotempo buscarNome (@Param("nome") String nome);
+
+    public Previsaodotempo BuscarLocal3(@Param("latitude") int latitude,@Param("longitude")int longitude);
+
 
 }
